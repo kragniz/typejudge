@@ -30,7 +30,7 @@ def represent_type_hints_class(obj: Any) -> Dict[str, Dict]:
 
 def represent_type_hints_module(module) -> Dict[str, Dict]:
     types = {}
-    for name, obj in m.__dict__.items():
+    for name, obj in module.__dict__.items():
         if inspect.isclass(obj):
             hints = represent_type_hints_class(obj)
         else:
