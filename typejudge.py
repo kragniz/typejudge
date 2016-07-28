@@ -66,7 +66,7 @@ def judge(previous: Dict, current: Dict) -> str:
     return return_value
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='judge your types')
     parser.add_argument('module', metavar='MODULE', default=None,
                         help='module to import and check')
@@ -89,7 +89,17 @@ if __name__ == '__main__':
 
     if previous_types:
         judgement = judge(previous_types, types)
-        print({0: 'patch', 1: 'minor', 2: 'major'}.get(0))
+        if args.version:
+            v = args.version
+            if judgement == 0:
+                v = semver.bump_patch(v)
+            elif judgement == 1:
+                v = semver.bump_minor(v)
+            elif judgement == 2:
+                v = semver.bump_major(v)
+            print(v)
+        else:
+            print({0: 'patch', 1: 'minor', 2: 'major'}.get(judgement))
 
     if args.out:
         if args.out != '-':
@@ -97,3 +107,7 @@ if __name__ == '__main__':
                 json.dump(types, f, sort_keys=True, indent=4)
         else:
             print(json.dumps(types, sort_keys=True, indent=4))
+
+
+if __name__ == '__main__':
+    main()
