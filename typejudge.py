@@ -1,6 +1,8 @@
 import argparse
+import importlib
 import inspect
 import json
+import os
 import sys
 import typing
 
@@ -78,7 +80,8 @@ def main():
                         help='load type definitions from this file')
     args = parser.parse_args()
 
-    m = __import__(args.module)
+    sys.path.append(os.getcwd())
+    m = importlib.import_module(args.module)
 
     previous_types = None
     if args.file is not None:
