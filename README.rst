@@ -10,6 +10,8 @@ it will judge this to be an API change and recommend a major version bump.
 
 This is largely inspired by Elm's package manager, which also enforces semver.
 
+.. image:: https://asciinema.org/a/81244.png
+   :target: https://asciinema.org/a/81244?autoplay=1&speed=1.4
 
 Installation
 ============
