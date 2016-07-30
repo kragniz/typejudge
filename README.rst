@@ -148,3 +148,7 @@ Obviously use some discretion when releasing in this way. Just because the
 types of your API remain the same, it doesn't necessarily mean that your code
 is backwards compatible. Typejudge suggests the smallest version increment you
 should make.
+
+
+.. image:: https://asciinema.org/a/eh59ktmaz30qbza97mpjgtzig.png
+   :target: https://asciinema.org/a/eh59ktmaz30qbza97mpjgtzig?autoplay=1&speed=1.4
