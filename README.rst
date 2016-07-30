@@ -95,3 +95,56 @@ Typejudge will now recommend this is a major release:
 
     $ typejudge -f testmodule.json testmodule
     major
+
+With no changes to the API's types, typejudge will recommend a patch release.
+
+
+Example usage with bumpversion
+------------------------------
+
+Typejudge works quite well with bumpversion. Doing this is probably
+inadvisable, but you can entirely automate releases.
+
+Assuming similar files as in the previous section, set up a config file for
+bumpversion, something like:
+
+.. code-block:: ini
+
+    $ cat .bumpversion.cfg
+    [bumpversion]
+    current_version = 2.0.3
+    commit = True
+    tag = True
+
+    [bumpversion:file:setup.py]
+
+And a setup.py:
+
+.. code-block:: python
+
+    $ cat setup.py
+    import setuptools
+
+    setuptools.setup(
+        name="testpackage",
+        version="2.0.3",
+        description="Test stuff",
+    )
+
+Then run something along these lines to cut a new release:
+
+.. code-block:: bash
+
+    $ bumpversion $(typejudge -f testmodule.json testmodule)
+
+You'll also want to save the state of the API at this point, so you can compare
+it at the next release:
+
+.. code-block:: bash
+
+    $ typejudge -o testmodule.json testmodule
+
+Obviously use some discretion when releasing in this way. Just because the
+types of your API remain the same, it doesn't necessarily mean that your code
+is backwards compatible. Typejudge suggests the smallest version increment you
+should make.
