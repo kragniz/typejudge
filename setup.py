@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="typejudge",
-    version="0.2.0",
+    version="0.3.0",
     url="https://github.com/kragniz/typejudge",
 
     author="Louis Taylor",
